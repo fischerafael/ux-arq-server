@@ -14,8 +14,10 @@ interface User {
     age: Age
 }
 
+type EmailValidator = (email: string) => boolean
+
 export const user = {
-    create(data: User) {
+    create(data: User, emailValidator: EmailValidator) {
         const { name, email, password, role, gender, age } = data
 
         if (!name || !email || !password || !role || !gender || !age)
@@ -29,6 +31,9 @@ export const user = {
             )
 
         if (age <= 0) throw new Error('User age should not be equal or below 0')
+
+        const isEmailValid = emailValidator(email)
+        if (!isEmailValid) throw new Error('User email should be valid')
 
         const user = {
             name,

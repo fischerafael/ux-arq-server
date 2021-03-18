@@ -20,20 +20,26 @@ export const user = {
     create(data: User, emailValidator: EmailValidator) {
         const { name, email, password, role, gender, age } = data
 
-        if (!name || !email || !password || !role || !gender || !age)
+        const missingFields =
+            !name || !email || !password || !role || !gender || !age
+        if (missingFields)
             throw new Error(
                 'Name, email, password, role, gender and age are required fields'
             )
 
-        if (name.length < 6 || name.length < 6 || name.length < 6)
+        const shortFields =
+            name.length < 6 || name.length < 6 || name.length < 6
+        if (shortFields)
             throw new Error(
                 'User fields name, email and password should be at least 6 characters long'
             )
 
-        if (age <= 0) throw new Error('User age should not be equal or below 0')
+        const negativeAge = age <= 0
+        if (negativeAge)
+            throw new Error('User age should not be equal or below 0')
 
-        const isEmailValid = emailValidator(email)
-        if (!isEmailValid) throw new Error('User email should be valid')
+        const isValidEmail = emailValidator(email)
+        if (!isValidEmail) throw new Error('User email should be valid')
 
         const user = {
             name,

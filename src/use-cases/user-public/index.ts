@@ -1,0 +1,20 @@
+import { userRepository } from '../../adapters/repositories/user'
+import { IUserPublicCreateBody } from '../../entities/user'
+import { DEFAULT_USER_ROLE } from '../../external/app/constants'
+
+export const userPublicUseCase = {
+    async create(body: IUserPublicCreateBody) {
+        const { email, password, username, birth, gender, secretKey } = body
+
+        if (!email || !password || !username || !birth || !gender || !secretKey)
+            throw new Error('missing fields')
+
+        const defaultRole = DEFAULT_USER_ROLE || 'client'
+
+        const user = await userRepository.create({
+            ...body,
+            role: defaultRole
+        })
+        return user
+    }
+}

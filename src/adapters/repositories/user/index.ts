@@ -5,5 +5,13 @@ export const userRepository = {
     async create(data: IUserPublicCreateRepository) {
         const user = await User.create(data)
         return user
+    },
+    async findByEmail(email: string) {
+        const user = await User.findOne({ email })
+        return user
+    },
+    async findByUserName(username: string) {
+        const user = await User.findOne({ username })
+        return user
     }
 }

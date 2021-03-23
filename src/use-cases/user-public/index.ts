@@ -6,8 +6,15 @@ export const userPublicUseCase = {
     async create(body: IUserPublicCreateBody) {
         const { email, password, username, birth, gender, secretKey } = body
 
-        if (!email || !password || !username || !birth || !gender || !secretKey)
-            throw new Error('missing fields')
+        const existingEmail = await userRepository.findByEmail(email)
+        if (existingEmail) throw new Error('email already exists')
+
+        const existingUserName = await userRepository.findByUserName(username)
+        if (existingUserName) throw new Error('username already exists')
+
+        const missingFields =
+            !email || !password || !username || !birth || !gender || !secretKey
+        if (missingFields) throw new Error('missing fields')
 
         const defaultRole = DEFAULT_USER_ROLE || 'client'
 

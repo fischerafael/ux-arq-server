@@ -19,3 +19,7 @@ export interface IUserPublicCreateBody {
 export interface IUserPublicCreateRepository extends IUserPublicCreateBody {
     role: UserRole
 }
+
+export interface IUserPrivateDeleteParams {
+    _id: UserId
+}

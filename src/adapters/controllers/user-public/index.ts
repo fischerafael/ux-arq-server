@@ -11,5 +11,13 @@ export const userPublicController = {
         } catch (e) {
             next(e)
         }
+    },
+    async index(req: Request, res: Response, next: NextFunction) {
+        try {
+            const users = await userPublicUseCase.index()
+            return res.status(200).json(users)
+        } catch (e) {
+            next(e)
+        }
     }
 }

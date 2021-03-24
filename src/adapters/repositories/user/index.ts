@@ -13,5 +13,13 @@ export const userRepository = {
     async findByUserName(username: string) {
         const user = await User.findOne({ username })
         return user
+    },
+    async index() {
+        const users = await User.find()
+        return users
+    },
+    async findByIdAndRemove(userId: string) {
+        const deletedUser = await User.findByIdAndRemove(userId)
+        return deletedUser
     }
 }

@@ -22,6 +22,12 @@ export const userPublicUseCase = {
             ...body,
             role: defaultRole
         })
+
         return user
+    },
+    async index() {
+        const users = await userRepository.index()
+
+        return users
     }
 }

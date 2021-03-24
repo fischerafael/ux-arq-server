@@ -16,7 +16,6 @@ export const encryption = {
             const isEqual = await bcrypt.compare(plainText, hash)
             return isEqual
         } catch (e) {
-            console.log(e)
             throw new Error('failed to compare')
         }
     }

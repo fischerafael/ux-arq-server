@@ -23,3 +23,8 @@ export interface IUserPublicCreateRepository extends IUserPublicCreateBody {
 export interface IUserPrivateDeleteParams {
     _id: UserId
 }
+
+export interface ISessionCreateBody {
+    email: UserEmail
+    password: UserPassword
+}

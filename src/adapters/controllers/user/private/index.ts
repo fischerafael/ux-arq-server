@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
-import { userPrivateUseCase } from '../../../use-cases/user/private'
+import { userPrivateUseCase } from '../../../../use-cases/user/private'
 
 export const userPrivateController = {
     async delete(req: Request, res: Response, next: NextFunction) {

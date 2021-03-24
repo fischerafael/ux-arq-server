@@ -1,6 +1,7 @@
-import { userRepository } from '../../adapters/repositories/user'
-import { IUserPublicCreateBody } from '../../entities/user'
-import { DEFAULT_USER_ROLE } from '../../external/app/constants'
+import { userRepository } from '../../../adapters/repositories/user'
+import { IUserPublicCreateBody } from '../../../entities/user'
+import { DEFAULT_USER_ROLE } from '../../../external/app/constants'
+import { encryption } from '../../../external/utils/bcryptjs'
 
 export const userPublicUseCase = {
     async create(body: IUserPublicCreateBody) {
@@ -18,8 +19,13 @@ export const userPublicUseCase = {
 
         const defaultRole = DEFAULT_USER_ROLE || 'client'
 
+        const hashedPassword = await encryption.create(password)
+        const hashedSecretKey = await encryption.create(secretKey)
+
         const user = await userRepository.create({
             ...body,
+            password: hashedPassword,
+            secretKey: hashedSecretKey,
             role: defaultRole
         })
 

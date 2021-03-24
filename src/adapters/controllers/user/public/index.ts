@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 
-import { userPublicUseCase } from '../../../use-cases/user-public'
+import { userPublicUseCase } from '../../../../use-cases/user/public'
 
 export const userPublicController = {
     async create(req: Request, res: Response, next: NextFunction) {

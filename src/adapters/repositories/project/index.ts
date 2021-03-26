@@ -19,5 +19,9 @@ export const projectRepository = {
             .where({ stage: 'reference' })
             .where({ visibility: 'private' })
         return privateReferences
+    },
+    async findById(projectId: string) {
+        const project = await Project.findById(projectId)
+        return project
     }
 }

@@ -64,9 +64,10 @@ const Schema = new mongoose.Schema({
         colorBlue: { type: Number, required: true },
         colorPurple: { type: Number, required: true },
         colorPink: { type: Number, required: true },
-        live: { type: Number, required: true },
-        workAndStudy: { type: Number, required: true },
-        reacreationAndLeisure: { type: Number, required: true },
+        resting: { type: Number, required: true },
+        development: { type: Number, required: true },
+        work: { type: Number, required: true },
+        recreation: { type: Number, required: true },
         mandatory: { type: Number, required: true }
     }
 })

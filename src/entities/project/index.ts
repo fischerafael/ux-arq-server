@@ -10,7 +10,6 @@ export interface IReferencePrivateCreateBody {
     name: ProjectName
     location: ProjectLocation
     thumbnail: ProjectThumbnail
-    visibility: ProjectVisibility
     features: IProjectFeaturesPrivateCreateBody
 }
 
@@ -21,8 +20,8 @@ export interface IReferencePrivateCreateParams {
 export interface IReferencePublicCreateRepository
     extends IReferencePrivateCreateBody,
         IReferencePrivateCreateParams {
-    stage: ProjectStage
     visibility: ProjectVisibility
+    stage: ProjectStage
 }
 
 type ZeroOrOne = boolean
@@ -71,8 +70,9 @@ export interface IProjectFeaturesPrivateCreateBody {
     colorPurple: ZeroOrOne
     colorPink: ZeroOrOne
 
-    live: ZeroOrOne
-    workAndStudy: ZeroOrOne
-    reacreationAndLeisure: ZeroOrOne
+    resting: ZeroOrOne
+    recreation: ZeroOrOne
+    work: ZeroOrOne
+    development: ZeroOrOne
     mandatory: ZeroOrOne
 }

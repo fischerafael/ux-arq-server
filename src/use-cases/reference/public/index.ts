@@ -16,8 +16,8 @@ export const referencePublicUseCase = {
         const user = await userRepository.findById(params.owner)
         if (!user) throw new Error('onwer not found')
 
-        const isNotAdmin = user.role !== 'admin'
-        if (isNotAdmin)
+        const isAdmin = user.role === 'admin'
+        if (!isAdmin)
             throw new Error('only admins can create public references')
 
         const reference = await projectRepository.create({

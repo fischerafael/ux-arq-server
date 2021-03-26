@@ -8,22 +8,16 @@ export const projectRepository = {
         const project = await Project.create(data)
         return project
     },
-    async indexPublic(stage?: ProjectStages) {
-        if (stage) {
-            const filteredProjects = await Project.find({ stage })
-            return filteredProjects
-        }
-        const allProjects = await Project.find()
-        return allProjects
+    async indexPublicReferences() {
+        const publicReferences = await Project.find({
+            stage: 'reference'
+        }).where({ visibility: 'public' })
+        return publicReferences
     },
-    async indexPrivate(owner: string, stage?: ProjectStages) {
-        if (stage) {
-            const filteredProjects = await Project.find({ owner }).where({
-                stage
-            })
-            return filteredProjects
-        }
-        const allProjects = await Project.find({ owner })
-        return allProjects
+    async indexPrivateReferences(owner: string) {
+        const privateReferences = await Project.find({ owner })
+            .where({ stage: 'reference' })
+            .where({ visibility: 'private' })
+        return privateReferences
     }
 }

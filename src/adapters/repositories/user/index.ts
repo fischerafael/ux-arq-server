@@ -14,6 +14,10 @@ export const userRepository = {
         const user = await User.findOne({ username })
         return user
     },
+    async findById(userId: string) {
+        const user = await User.findById(userId)
+        return user
+    },
     async index() {
         const users = await User.find()
         return users

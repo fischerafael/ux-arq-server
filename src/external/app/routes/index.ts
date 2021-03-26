@@ -19,4 +19,5 @@ routes.post('/sessions', sessionController.create)
 routes.post('/users/:user_id/references', referencePrivateController.create)
 routes.get('/users/:user_id/references', referencePrivateController.index)
 
+routes.post('/:user_id/references', referencePublicController.create)
 routes.get('/references', referencePublicController.index)

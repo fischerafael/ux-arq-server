@@ -23,10 +23,23 @@ export const evaluationReferenceUseCase = {
                 'resting, work, development, mandatory and recreation scores should be between 0 - 1 range'
             )
 
+        const alreadyEvaluated = await evaluationRepository.findOne(
+            params.project,
+            params.evaluator
+        )
+        if (alreadyEvaluated) throw new Error('project already evaluated')
+
         const evaluation = await evaluationRepository.create({
             ...body,
             ...params
         })
         return evaluation
+    },
+    async index(params: IEvaluationCreateParams) {
+        const { project, evaluator } = params
+
+        const projectsEvaluations = await evaluationRepository.index(project)
+
+        return projectsEvaluations
     }
 }

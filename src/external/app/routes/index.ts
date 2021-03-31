@@ -24,6 +24,10 @@ routes.post(
     '/users/:user_id/references/:reference_id/evaluations',
     evaluationReferenceController.create
 )
+routes.get(
+    '/users/:user_id/references/:reference_id/evaluations',
+    evaluationReferenceController.index
+)
 
 routes.post('/:user_id/references', referencePublicController.create)
 routes.get('/references', referencePublicController.index)

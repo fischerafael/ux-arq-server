@@ -6,6 +6,7 @@
     "scripts": {
         "test": "jest",
         "dev": "ts-node-dev src/index.ts",
+        "postinstall": "tsc",
         "brain": "ts-node-dev src/external/brainjs"
     },
     "keywords": [],
